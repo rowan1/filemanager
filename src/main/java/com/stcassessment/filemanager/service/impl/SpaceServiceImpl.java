@@ -29,7 +29,8 @@ public class SpaceServiceImpl implements SpaceService {
   private final ModelMapper modelMapper;
   private final PermissionService permissionService;
   private final PermissionGroupService permissionGroupService;
-//  private final PermissionRepository permissionRepository;
+
+  //  private final PermissionRepository permissionRepository;
   @Override
   public SpaceResponseDTO createSpace(SpaceRequestDTO spaceRequestDTO) {
 
@@ -44,30 +45,16 @@ public class SpaceServiceImpl implements SpaceService {
     PermissionGroup adminGroup = permissionGroupService.createPermissionGroup(spaceRequestDTO.getAdminUserName());
 
     // Add EDIT access
-    log.info("Creating new Permission for user {} as editor.",spaceRequestDTO.getEditorUserName());
+    log.info("Creating new Permission for user {} as editor.", spaceRequestDTO.getEditorUserName());
     permissionService.createPermission(spaceRequestDTO.getEditorUserName(), PermissionLevel.EDIT, adminGroup.getId());
 
     // Add VIEW access
-    log.info("Creating new Permission for user {} as viewer.",spaceRequestDTO.getViewerUserName());
+    log.info("Creating new Permission for user {} as viewer.", spaceRequestDTO.getViewerUserName());
     permissionService.createPermission(spaceRequestDTO.getViewerUserName(), PermissionLevel.VIEW, adminGroup.getId());
-//    createPermissions(adminGroup.getId());
 
     // Assign the permission group to the created space
     spaceItem.setPermissionGroupId(adminGroup.getId());
     log.info("A new space is created.");
     return modelMapper.map(itemRepository.save(spaceItem), SpaceResponseDTO.class);
   }
-//  void createPermissions(long adminGroupId) {
-//    Permission viewPermission = new Permission();
-//    viewPermission.setUserEmail(configProperties.getUserViewer());
-//    viewPermission.setPermissionLevel(PermissionLevel.VIEW);
-//    viewPermission.setGroupId(adminGroupId);
-//
-//
-//    Permission editPermission = new Permission();
-//    viewPermission.setUserEmail(configProperties.getUserEditor());
-//    viewPermission.setPermissionLevel(PermissionLevel.EDIT);
-//    viewPermission.setGroupId(adminGroupId);
-//    permissionRepository.saveAll(List.of(editPermission, viewPermission));
-//  }
 }
