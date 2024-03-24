@@ -19,6 +19,7 @@
 		<testcontainers.version>1.16.2</testcontainers.version>
 		<springdoc.version>1.6.6</springdoc.version>
 		<modelmapper.version>3.0.0</modelmapper.version>
+		<spotless.version>2.21.0</spotless.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -72,6 +73,17 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.3.Final</version>
 		</dependency>
+<!--		&lt;!&ndash; Spring Security &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
+<!--		&lt;!&ndash; Spring Security Test (optional for testing) &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.security</groupId>-->
+<!--			<artifactId>spring-security-test</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -104,6 +116,54 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>${spotless.version}</version>
+				<configuration>
+					<formats>
+						<format>
+							<includes>
+								<include>*.md</include>
+								<include>.gitignore</include>
+								<include>.java</include>
+							</includes>
+							<trimTrailingWhitespace/>
+							<endWithNewline/>
+							<indent>
+								<tabs>true</tabs>
+								<spacesPerTab>4</spacesPerTab>
+							</indent>
+						</format>
+					</formats>
+					<java>
+						<includes>
+							<include>src/main/java/**/*.java</include>
+							<include>src/test/java/**/*.java</include>
+						</includes>
+						<importOrder/>
+						<removeUnusedImports/>
+						<replaceRegex>
+							<name>Remove wildcard imports</name>
+							<searchRegex>import\s+[^\*\s]+\*;(\r\n|\r|\n)</searchRegex>
+							<replacement>$1</replacement>
+						</replaceRegex>
+						<replaceRegex>
+							<name>Remove wildcard static imports</name>
+							<searchRegex>import\s+static\s+[^\*\s]+\*;(\r\n|\r|\n)</searchRegex>
+							<replacement>$1</replacement>
+						</replaceRegex>
+					</java>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

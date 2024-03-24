@@ -7,6 +7,8 @@ import com.stcassessment.filemanager.service.PermissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PermissionServiceImpl implements PermissionService {
@@ -18,5 +20,15 @@ public class PermissionServiceImpl implements PermissionService {
     permission.setPermissionLevel(permissionLevel);
     permission.setGroupId(adminGroupId);
     return permissionRepository.save(permission);
+  }
+
+  @Override
+  public boolean hasViewPermission(long permissionGroupId, String userName) {
+    return !permissionRepository.findByGroupIdAndUserEmailAndPermissionLevel(permissionGroupId, userName, PermissionLevel.VIEW).isEmpty();
+  }
+
+  @Override
+  public boolean hasEditPermission(long permissionGroupId, String userName) {
+    return !permissionRepository.findByGroupIdAndUserEmailAndPermissionLevel(permissionGroupId, userName, PermissionLevel.EDIT).isEmpty();
   }
 }

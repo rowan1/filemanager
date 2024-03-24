@@ -2,7 +2,7 @@
 -- Create permissions table
 --
 CREATE TABLE permissions (
-    id BIGSERIAL NOT NULL,
+    id BIGSERIAL NOT NULL AUTO INCREMENT,
     user_email VARCHAR(100) NOT NULL UNIQUE,
     permission_level VARCHAR(10) NOT NULL,
     group_id BIGSERIAL NOT NULL,

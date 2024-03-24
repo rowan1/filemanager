@@ -1,6 +1,9 @@
 package com.stcassessment.filemanager.controller;
+
 import com.stcassessment.filemanager.dto.common.ApiErrorResponse;
 import com.stcassessment.filemanager.dto.common.ApiResponse;
+import com.stcassessment.filemanager.dto.folders.FolderRequestDTO;
+import com.stcassessment.filemanager.dto.folders.FolderResponseDTO;
 import com.stcassessment.filemanager.dto.space.SpaceRequestDTO;
 import com.stcassessment.filemanager.dto.space.SpaceResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,19 +13,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
 import javax.servlet.http.HttpServletResponse;
 
-@Tag(name = "${api.spaces.tag.name}", description = "${api.spaces.tag.desc}")
-@RequestMapping("/api/spaces")
-public interface SpaceApi {
+@Tag(name = "${api.folders.tag.name}", description = "${api.folders.tag.desc}")
+@RequestMapping("/api/folders")
+public interface FolderApi {
 
   @Operation(
-          summary = "${api.spaces.operation.post.summary}",
-          description = "${api.spaces.operation.post.desc}")
+          summary = "${api.folders.operation.post.summary}",
+          description = "${api.folders.operation.post.desc}")
   @ApiResponses(
           value = {
                   @io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -45,8 +50,8 @@ public interface SpaceApi {
                           description = "${api.response-codes.forbidden.desc}",
                           content = @Content)
           })
-//  @PreAuthorize("hasRole('ADMIN')")
   @PostMapping()
+//  @PreAuthorize("hasPermission(#spaceId, 'Space', {permission: 'EDIT', userEmail: #userEmail})")
   @ResponseStatus(code = HttpStatus.CREATED)
-  ResponseEntity<ApiResponse<SpaceResponseDTO>> createSpace(@RequestBody SpaceRequestDTO spaceRequestDTO);
+  ResponseEntity<ApiResponse<FolderResponseDTO>> createFolder(@RequestBody FolderRequestDTO folderRequestDTO);
 }

@@ -6,4 +6,5 @@ import com.stcassessment.filemanager.dto.space.SpaceResponseDTO;
 public interface SpaceService {
 
   SpaceResponseDTO createSpace(SpaceRequestDTO spaceRequestDTO);
+  SpaceResponseDTO getSpace(long spaceId);
 }

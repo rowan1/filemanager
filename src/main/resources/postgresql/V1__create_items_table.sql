@@ -2,7 +2,7 @@
 -- Create items table
 --
 CREATE TABLE items (
-    id BIGSERIAL NOT NULL,
+    id BIGSERIAL NOT NULL AUTO INCREMENT,
     name VARCHAR(100) NOT NULL,
     type VARCHAR(10) NOT NULL,
     permission_group_id BIGSERIAL NOT NULL,

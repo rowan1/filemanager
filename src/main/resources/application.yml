@@ -13,14 +13,6 @@ spring:
   zipkin:
     enabled: ${ZIPKIN_ENABLED}
     baseUrl: ${ZIPKIN_BASE_URL}
-  # Security configuration
-#  security:
-#    oauth2:
-#      client:
-#        client-id: ${OAUTH_CLIENT_CLIENT_ID}
-#        client-secret: ${OAUTH_CLIENT_CLIENT_SECRET}
-#        grant-type: ${OAUTH_CLIENT_GRANT_TYPE}
-#        access-token-uri: ${OAUTH_CLIENT_ACCESS_TOKEN_URI}
 
   datasource:
     url: "jdbc:postgresql://localhost:5432/filemanager"

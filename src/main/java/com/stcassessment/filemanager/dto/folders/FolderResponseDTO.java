@@ -1,16 +1,14 @@
-package com.stcassessment.filemanager.dto.space;
+package com.stcassessment.filemanager.dto.folders;
 
 import com.stcassessment.filemanager.enums.ItemType;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
 import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class SpaceResponseDTO {
+public class FolderResponseDTO {
   private long id;
   private String name;
   private ItemType type;

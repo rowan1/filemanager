@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PermissionService {
   Permission createPermission(String userEmail, PermissionLevel permissionLevel, long adminGroupId);
+  boolean hasViewPermission(long permissionGroupId, String userName);
+  boolean hasEditPermission(long permissionGroupId, String userName);
 }

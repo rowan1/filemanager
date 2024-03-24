@@ -5,11 +5,10 @@ import com.stcassessment.filemanager.dto.space.SpaceRequestDTO;
 import com.stcassessment.filemanager.dto.space.SpaceResponseDTO;
 import com.stcassessment.filemanager.enums.ItemType;
 import com.stcassessment.filemanager.enums.PermissionLevel;
+import com.stcassessment.filemanager.exception.EntityNotFoundException;
 import com.stcassessment.filemanager.model.Item;
-import com.stcassessment.filemanager.model.Permission;
 import com.stcassessment.filemanager.model.PermissionGroup;
 import com.stcassessment.filemanager.repository.ItemRepository;
-import com.stcassessment.filemanager.repository.PermissionRepository;
 import com.stcassessment.filemanager.service.PermissionGroupService;
 import com.stcassessment.filemanager.service.PermissionService;
 import com.stcassessment.filemanager.service.SpaceService;
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +28,6 @@ public class SpaceServiceImpl implements SpaceService {
   private final PermissionService permissionService;
   private final PermissionGroupService permissionGroupService;
 
-  //  private final PermissionRepository permissionRepository;
   @Override
   public SpaceResponseDTO createSpace(SpaceRequestDTO spaceRequestDTO) {
 
@@ -56,5 +53,15 @@ public class SpaceServiceImpl implements SpaceService {
     spaceItem.setPermissionGroupId(adminGroup.getId());
     log.info("A new space is created.");
     return modelMapper.map(itemRepository.save(spaceItem), SpaceResponseDTO.class);
+  }
+
+  @Override
+  public SpaceResponseDTO getSpace(long spaceId) {
+    return modelMapper.map(getById(spaceId), SpaceResponseDTO.class);
+  }
+  private Item getById(long spaceId){
+    return itemRepository
+            .findById(spaceId)
+            .orElseThrow(() -> new EntityNotFoundException(Item.class, "id", String.valueOf(spaceId)));
   }
 }
