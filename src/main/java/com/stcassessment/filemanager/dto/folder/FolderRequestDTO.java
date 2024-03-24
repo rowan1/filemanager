@@ -1,4 +1,4 @@
-package com.stcassessment.filemanager.dto.folders;
+package com.stcassessment.filemanager.dto.folder;
 
 import lombok.Getter;
 import lombok.Setter;

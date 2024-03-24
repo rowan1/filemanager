@@ -42,3 +42,60 @@ Implement global exception handlers to handle errors gracefully.
 Configuration:
 
 Configure database connection and other properties using application.yml.
+
+
+### How to run
+#### Docker
+```shell
+docker-compose up
+```
+
+### Hot to use
+```shell
+curl --location 'http://localhost:8087/api/spaces' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=4ABE8CDE60D3704B2FDF69D5A312D423' \
+--data-raw '{
+    "spaceName":"stc-assessments",
+    "adminUserName": "admin",
+    "viewerUserName": "viewer@example.com",
+    "editorUserName": "editor@example.com"
+}'
+```
+Response: \
+{ \
+    "status": 201, \
+    "timestamp": "2024-03-25T00:29:03.284498", \
+    "data": { \
+        "id": 19, \
+        "name": "stc-assessments", \
+        "type": "SPACE", \
+        "permissionGroupId": 16, \
+        "createdAt": "2024-03-24T22:29:03.248+00:00" \
+    } \
+}
+
+```shell
+curl --location 'http://localhost:8087/api/folders' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=4ABE8CDE60D3704B2FDF69D5A312D423' \
+--data-raw '{
+    "spaceId":19,
+    "folderName": "backend",
+    "userEmail": "editor@example.com"
+}'
+```
+
+Response: \
+{ \
+    "status": 201, \
+    "timestamp": "2024-03-25T01:04:26.09013", \
+    "data": { \
+        "id": 22, \
+        "name": "backend", \
+        "type": "FOLDER", \
+        "permissionGroupId": null, \
+        "rootId": 19, \
+        "createdAt": "2024-03-24T23:04:26.074+00:00" \
+    }
+}

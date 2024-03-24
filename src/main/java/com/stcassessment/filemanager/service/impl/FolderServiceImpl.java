@@ -1,7 +1,7 @@
 package com.stcassessment.filemanager.service.impl;
 
-import com.stcassessment.filemanager.dto.folders.FolderRequestDTO;
-import com.stcassessment.filemanager.dto.folders.FolderResponseDTO;
+import com.stcassessment.filemanager.dto.folder.FolderRequestDTO;
+import com.stcassessment.filemanager.dto.folder.FolderResponseDTO;
 import com.stcassessment.filemanager.enums.ItemType;
 import com.stcassessment.filemanager.model.Item;
 import com.stcassessment.filemanager.repository.ItemRepository;
@@ -22,13 +22,8 @@ public class FolderServiceImpl implements FolderService {
     Item item = new Item();
     item.setName(folderRequestDTO.getFolderName());
     item.setType(ItemType.FOLDER);
-    setPermissionGroupId(item, folderRequestDTO.getSpaceId());
+    item.setRootId(folderRequestDTO.getSpaceId());
     return modelMapper.map(itemRepository.save(item), FolderResponseDTO.class);
-  }
-  private void setPermissionGroupId(Item item, long spaceId){
-    Optional<Item> optionalItem = itemRepository.findById(spaceId);
-
-    if(optionalItem.isPresent()) item.setPermissionGroupId(optionalItem.get().getPermissionGroupId());
   }
 
 }

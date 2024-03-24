@@ -15,9 +15,11 @@ spring:
     baseUrl: ${ZIPKIN_BASE_URL}
 
   datasource:
+#    url: "jdbc:postgresql://postgres:5432/filemanager"
     url: "jdbc:postgresql://localhost:5432/filemanager"
     username: stc
     password: stc_assessments
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:

@@ -73,17 +73,6 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.3.Final</version>
 		</dependency>
-<!--		&lt;!&ndash; Spring Security &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
-<!--		&lt;!&ndash; Spring Security Test (optional for testing) &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

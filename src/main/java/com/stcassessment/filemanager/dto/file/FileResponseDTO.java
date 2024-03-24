@@ -1,4 +1,4 @@
-package com.stcassessment.filemanager.dto.folders;
+package com.stcassessment.filemanager.dto.file;
 
 import com.stcassessment.filemanager.enums.ItemType;
 import lombok.Getter;
@@ -8,10 +8,11 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class FolderResponseDTO {
+public class FileResponseDTO {
   private long id;
   private String name;
   private ItemType type;
-  private long permissionGroupId;
+  private Long permissionGroupId;
+  private Long parentId;
   private Timestamp createdAt;
 }

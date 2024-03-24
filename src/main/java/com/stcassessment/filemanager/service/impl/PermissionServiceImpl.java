@@ -2,6 +2,7 @@ package com.stcassessment.filemanager.service.impl;
 
 import com.stcassessment.filemanager.enums.PermissionLevel;
 import com.stcassessment.filemanager.model.Permission;
+import com.stcassessment.filemanager.repository.ItemRepository;
 import com.stcassessment.filemanager.repository.PermissionRepository;
 import com.stcassessment.filemanager.service.PermissionService;
 import lombok.RequiredArgsConstructor;
