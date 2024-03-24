@@ -1,0 +1,13 @@
+logging:
+  level:
+    #    root: INFO
+    #    org.springframework.security: DEBUG
+    #    org.springframework.web.client.RestTemplate: DEBUG
+    #    com.stcassessment.filemanager: DEBUG
+    com.stcassessment.filemanager.config.logging.HttpLoggingFilter: DEBUG
+    app: TRACE
+  group:
+    app: com.stcassessment.filemanager
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS XXX
+    level: "%5p [${spring.zipkin.service.name:${spring.application.name:}} %X{traceId:-} %X{spanId:-}] [%X{clientId} %X{userType} %X{userId} %X{userName}] [%X{req.method} %X{req.requestURI}]"
