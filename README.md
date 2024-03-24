@@ -99,3 +99,6 @@ Response: \
         "createdAt": "2024-03-24T23:04:26.074+00:00" \
     }
 }
+
+### API Documentation
+Import stc-assessments.postman_collection.json to postman and change your environment
