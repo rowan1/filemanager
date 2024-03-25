@@ -49,11 +49,7 @@ public class FileServiceImpl implements FileService {
     }
 
     try {
-      // Get the file bytes and do whatever you need to do with it
       byte[] fileBytes = file.getBytes();
-
-      // Save the file to your desired location or database
-      // You can implement this logic based on your requirements
       FileData fileData = new FileData();
       fileData.setItemId(fileId);
       fileData.setFile(fileBytes);
