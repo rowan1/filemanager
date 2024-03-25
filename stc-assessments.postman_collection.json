@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "2e238512-44fe-4e9d-8013-cc95f5328fdc",
+		"name": "stc-assessments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18670230"
+	},
+	"item": [
+		{
+			"name": "create space",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response=pm.response.json();",
+							"pm.collectionVariables.set(\"space_id\", response.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"spaceName\":\"stc-assessments\",\n    \"adminUserName\": \"admin\",\n    \"viewerUserName\": \"{{viewer_user}}\",\n    \"editorUserName\": \"{{editor_user}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_url}}/api/spaces",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"spaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create folder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response=pm.response.json();",
+							"pm.collectionVariables.set(\"folder_id\", response.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"spaceId\":{{space_id}},\n    \"folderName\": \"backend\",\n    \"userEmail\": \"{{editor_user}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server_url}}/api/folders",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"folders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response=pm.response.json();",
+							"pm.collectionVariables.set(\"file_id\", response.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/rowan/Downloads/STC-backend-assessment.pdf"
+						},
+						{
+							"key": "userEmail",
+							"value": "{{editor_user}}",
+							"type": "text"
+						},
+						{
+							"key": "folderId",
+							"value": "{{folder_id}}",
+							"type": "text"
+						},
+						{
+							"key": "fileName",
+							"value": "assessment.pdf",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server_url}}/api/files/upload",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"files",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/api/files/{{file_id}}/download?userEmail={{viewer_user}}",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"files",
+						"{{file_id}}",
+						"download"
+					],
+					"query": [
+						{
+							"key": "userEmail",
+							"value": "{{viewer_user}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "file metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server_url}}/api/files/{{file_id}}/download?userEmail={{viewer_user}}",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"files",
+						"{{file_id}}",
+						"download"
+					],
+					"query": [
+						{
+							"key": "userEmail",
+							"value": "{{viewer_user}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "viewer_user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "editor_user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "space_id",
+			"value": ""
+		},
+		{
+			"key": "folder_id",
+			"value": ""
+		},
+		{
+			"key": "file_id",
+			"value": ""
+		}
+	]
+}

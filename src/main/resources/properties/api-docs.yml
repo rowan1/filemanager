@@ -1,0 +1,41 @@
+# Swagger config
+springdoc:
+  api-docs:
+    enabled: true
+    path: '/v3/api-docs'
+    resolve-schema-properties: true
+  swagger-ui:
+    path: '/swagger-ui'
+    config-url: '${INGRESS_PATH}/v3/api-docs/swagger-config'
+    url: '${INGRESS_PATH}/v3/api-docs'
+    doc-expansion: none
+    disable-swagger-default-url: true
+
+# API details
+api:
+  response-codes:
+    ok:
+      desc: OK
+    created:
+      desc: Created
+    badRequest:
+      desc: Bad Request
+    notFound:
+      desc: Not Found
+    unauthorized:
+      desc: Unauthorized
+    forbidden:
+      desc: Forbidden
+    notContent:
+      desc: Not Content
+
+  spaces:
+    tag:
+      name: Space APIs
+      desc: Space endpoints that offers the main space related APIs to all st assessment backend clients (APP, API)
+
+    operation:
+      post:
+        parameter:
+          SpaceRequestDTO:
+            desc: Space request body
