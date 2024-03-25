@@ -29,21 +29,30 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false)
   private Long id;
+
   private String name;
+
   @Enumerated(EnumType.STRING) private ItemType type;
   private Long permissionGroupId;
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "permissionGroupId", referencedColumnName = "id", insertable=false, updatable=false)
   private PermissionGroup permissionGroup;
+
   private Long rootId;
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "rootId", referencedColumnName = "id", insertable=false, updatable=false)
   private Item root;
+
   private Long parentId;
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "parentId", referencedColumnName = "id", insertable=false, updatable=false)
   private Item parent;
+
   @CreationTimestamp
   private Timestamp createdAt;
+
   @UpdateTimestamp private Timestamp updatedAt;
 }

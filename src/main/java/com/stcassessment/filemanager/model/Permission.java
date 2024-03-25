@@ -27,14 +27,20 @@ public class Permission {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false)
   private Long id;
+
   @Column private String userEmail;
+
   @Enumerated(EnumType.STRING) private PermissionLevel permissionLevel;
+
   @Column private long groupId;
+
   @ManyToOne(optional=false)
   @JoinColumn(name = "groupId", insertable=false, updatable=false)
   private PermissionGroup permissionGroup;
+
   @CreationTimestamp
   private Timestamp createdAt;
+
   @UpdateTimestamp
   private Timestamp updatedAt;
 }

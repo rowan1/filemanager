@@ -22,9 +22,12 @@ public class PermissionGroup {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false)
   private Long id;
+
   @Column(name="group_name") private String groupName;
+
   @CreationTimestamp
   private Timestamp createdAt;
+
   @UpdateTimestamp
   private Timestamp updatedAt;
 }

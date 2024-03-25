@@ -28,7 +28,9 @@ public class FileData {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false)
   private Long id;
+
   private long itemId;
+
   @Lob
   @Type(type = "org.hibernate.type.BinaryType")
   private byte[] file;
@@ -41,6 +43,7 @@ public class FileData {
 
   @CreationTimestamp
   private Timestamp createdAt;
+
   @UpdateTimestamp
   private Timestamp updatedAt;
 
