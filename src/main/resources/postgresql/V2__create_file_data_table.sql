@@ -2,7 +2,7 @@
 -- Create file data table
 --
 CREATE TABLE file_data (
-    id BIGSERIAL NOT NULL AUTO INCREMENT,
+    id BIGSERIAL NOT NULL,
     item_id BIGSERIAL NOT NULL,
     file bytea NOT NULL,
     size BIGSERIAL,
